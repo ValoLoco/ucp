@@ -1,5 +1,7 @@
 # Universal Company Protocol (UCP)
 
+![Universal Company Protocol hero image](content/UCP-Article%201.png)
+
 A Bitcoin-native protocol for portable legal entities, capital tables, commercial contracts, arbitration, reputation, settlement, and governance beyond Earth.
 
 ## Status
