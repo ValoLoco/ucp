@@ -44,6 +44,10 @@ The public website [space.buenatura.org](https://space.buenatura.org) and this r
 
 **Status: proposal (research direction).** Stated neutral base for timestamping, settlement finality, and anchoring in README.md and architecture; confirmation confidence is not absolute finality (`docs/research/assumptions-and-corrections.md`). Primary starting reference: [Bitcoin developer documentation](https://developer.bitcoin.org/).
 
+## BCP 14
+
+**Status: verified fact (with source).** Best Current Practice for requirement keywords in specifications ([RFC 2119](https://www.rfc-editor.org/rfc/rfc2119), [RFC 8174](https://www.rfc-editor.org/rfc/rfc8174)). UCP normative chapters adopt these keywords per [specs/00-conventions.md](../specs/00-conventions.md).
+
 ## BitVM
 
 **Status: open question.** Referenced for high-value dispute escalation in architecture sketches (`docs/architecture.md`). Listed as a candidate to evaluate, not a dependency (STATUS.md). **Open: source needed** in assumptions register.
@@ -52,9 +56,25 @@ The public website [space.buenatura.org](https://space.buenatura.org) and this r
 
 **Status: proposal.** Public development and live-stream venue named in README.md and STATUS.md (not a protocol layer).
 
+## CBOR deterministic encoding
+
+**Status: open question.** Candidate canonical binary encoding per [RFC 8949](https://www.rfc-editor.org/rfc/rfc8949) Section 4.2; not selected ([specs/00-conventions.md](../specs/00-conventions.md)).
+
+## Claim label
+
+**Status: proposal.** Evidence category for spec assertions: verified fact (with source), proposal, assumption, open question ([specs/00-conventions.md](../specs/00-conventions.md), [assumptions-and-corrections.md](research/assumptions-and-corrections.md)).
+
 ## Clarity
 
 **Status: open question.** Smart-contract language named in architecture for Stacks-related designs (`docs/architecture.md`). **Open: source needed** in assumptions register.
+
+## Document status label
+
+**Status: proposal.** Maturity of a spec chapter: concept draft, discussion draft, candidate, stable, superseded ([specs/00-conventions.md](../specs/00-conventions.md), [specs/README.md](../specs/README.md)).
+
+## `effectiveAt`
+
+**Status: proposal.** Claimed effective time in the minimum record; not a trusted timestamp (`specs/core-v0.1.md`, [specs/00-conventions.md](../specs/00-conventions.md)).
 
 ## Entity record (portable entity record)
 
@@ -76,6 +96,10 @@ The public website [space.buenatura.org](https://space.buenatura.org) and this r
 
 **Status: proposal (research only).** L4 dispute resolution and enforceable rulings in the layer map (README.md). Deferred from initial demonstrator (decision 0001). Arbitration enforcement is jurisdiction-dependent (`docs/research/assumptions-and-corrections.md`). UNCITRAL arbitration texts: [UNCITRAL](https://uncitral.un.org/en/texts/arbitration).
 
+## Informative (section)
+
+**Status: proposal.** Non-requirement specification text; examples and notes are informative ([specs/00-conventions.md](../specs/00-conventions.md)).
+
 ## ION (`did:ion`)
 
 **Status: open question.** Identity method named in ULEI sketch (`docs/architecture.md`). Candidate to evaluate (STATUS.md). **Open: source needed** in assumptions register.
@@ -87,6 +111,10 @@ The public website [space.buenatura.org](https://space.buenatura.org) and this r
 ## ISL (Interstellar Settlement Layer)
 
 **Status: proposal (research only).** L6 multi-asset settlement with light-lag tolerance (README.md). Lightning named in architecture; Earth-Mars suitability not presumed (`docs/research/assumptions-and-corrections.md`).
+
+## JSON Canonicalization Scheme (JCS)
+
+**Status: open question.** Candidate canonical JSON form per [RFC 8785](https://www.rfc-editor.org/rfc/rfc8785); not selected ([specs/00-conventions.md](../specs/00-conventions.md)).
 
 ## Legal registrations
 
@@ -103,6 +131,10 @@ The public website [space.buenatura.org](https://space.buenatura.org) and this r
 ## Merkle root / Merkle commitment
 
 **Status: proposal.** Commitment pattern for registries and evidence in architecture (`docs/architecture.md`).
+
+## Normative (section)
+
+**Status: proposal.** Specification text that states BCP 14 requirements ([specs/00-conventions.md](../specs/00-conventions.md)).
 
 ## OpenTimestamps
 
@@ -124,9 +156,21 @@ The public website [space.buenatura.org](https://space.buenatura.org) and this r
 
 **Status: open question.** Explicitly not proposed (STATUS.md). Funding without a token is an open question (`docs/architecture.md`).
 
+## `protocolVersion`
+
+**Status: proposal.** Format version field in the minimum entity record (`specs/core-v0.1.md`); binding to semantic versioning proposed in [specs/00-conventions.md](../specs/00-conventions.md).
+
 ## RGB
 
 **Status: open question.** Alternative asset layer mentioned for UCT (`docs/architecture.md`, STATUS.md). **Open: source needed** in assumptions register.
+
+## RFC 3339
+
+**Status: proposal.** Proposed timestamp profile for UCP examples and future on-wire types ([RFC 3339](https://www.rfc-editor.org/rfc/rfc3339), [specs/00-conventions.md](../specs/00-conventions.md)).
+
+## Semantic versioning (protocol)
+
+**Status: proposal.** Proposed edition naming for released UCP versions per [Semantic Versioning 2.0.0](https://semver.org/) ([specs/00-conventions.md](../specs/00-conventions.md)).
 
 ## Settlement
 
