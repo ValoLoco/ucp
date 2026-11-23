@@ -2,6 +2,20 @@
 
 Alphabetical terms already used in this repository. **Status** is either **proposal** (design direction under research) or **open question** (unsettled or needs primary-source work). External standards link to URLs from [assumptions-and-corrections.md](research/assumptions-and-corrections.md) or, where noted, an official site. If no primary source is linked in-repo yet, entries say **Open: source needed**.
 
+## Layer names
+
+The public website [space.buenatura.org](https://space.buenatura.org) and this repository use different labels for the same seven-layer map. Nothing is renamed in-repo until a canonical scheme is chosen (see [../specs/README.md](../specs/README.md)).
+
+| Layer | Website name | Repository name |
+| --- | --- | --- |
+| L1 | UCP-ID (Portable Entity Identity) | ULEI (Universal Legal Entity Identifier) |
+| L2 | UCP-CAP (Portable Capital Table) | UCT (Universal Capital Table) |
+| L3 | UCP-CODE (Commercial Templates) | UCC-X (Universal Commercial Code) |
+| L4 | UCP-ARB (Off-World Arbitration Forum) | ICC-X (Interstellar Commercial Court) |
+| L5 | UCP-REP (Reputation Attestations) | URL (Universal Reputation Ledger) |
+| L6 | UCP-SETTLE (Delay-Tolerant Settlement) | ISL (Interstellar Settlement Layer) |
+| L7 | UCP-GOV (Human and AI-Agent Authority) | AGF (Algorithmic Governance Framework) |
+
 ## AGF (Algorithmic Governance Framework)
 
 **Status: proposal.** L7 in the seven-layer map: entity governance, authority delegation, and AI-agent permissions (README.md, `docs/architecture.md`). Not in scope for the first milestone (STATUS.md, decision 0001).

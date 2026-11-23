@@ -40,3 +40,7 @@ Each normative chapter should follow the same sections as contribution proposals
 9. **Open questions**
 
 Copy [\_template.md](_template.md) when opening a chapter pull request.
+
+## Open questions
+
+- **Open:** settle one canonical layer naming scheme (website UCP-* vs repo acronyms); note URL collides with web URLs and UCC-X with the US Uniform Commercial Code.

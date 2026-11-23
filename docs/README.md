@@ -25,10 +25,5 @@ Read in this order when learning UCP:
 | [../specs/_template.md](../specs/_template.md) | Reusable template for one spec chapter per pull request |
 | [../CONTRIBUTING.md](../CONTRIBUTING.md) | How to propose changes, evidence rules, and review expectations |
 | [../README.md](../README.md) | Repository entry point and layer overview table |
-
-## Content (non-normative)
-
-| Path | One-line summary |
-| --- | --- |
-| [../content/articles/001-the-missing-layer.md](../content/articles/001-the-missing-layer.md) | Concept article draft inviting stakeholder challenge |
-| [../content/streams/season-01.md](../content/streams/season-01.md) | Public stream references for BUENATURA discussions |
+| [../content/articles/001-the-missing-layer.md](../content/articles/001-the-missing-layer.md) | Non-normative concept article draft inviting stakeholder challenge |
+| [../content/streams/season-01.md](../content/streams/season-01.md) | Non-normative BUENATURA public stream season outline |
