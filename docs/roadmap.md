@@ -1,5 +1,9 @@
 # Development roadmap
 
+## Docs foundation
+
+Index, overview, glossary, and spec chapter map: see [README.md](README.md) and [../specs/README.md](../specs/README.md).
+
 ## Milestone 1: Establish the concept
 
 Publish the thesis, corrections, glossary, evidence register, and stakeholder questions. Exit criterion: readers can distinguish the proposed protocol from existing law and deployed technology.
