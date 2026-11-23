@@ -29,6 +29,11 @@ Concept draft v0.1. Under active public development.
 
 See `docs/architecture.md`.
 
+## Documentation
+
+- [docs/README.md](docs/README.md): index and reading order
+- [specs/README.md](specs/README.md): specification chapter map and template
+
 ## Development
 
 This repository is developed publicly and discussed on BUENATURA live streams.

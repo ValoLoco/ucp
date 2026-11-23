@@ -4,6 +4,14 @@ UCP welcomes precise objections, primary-source research, proposed specification
 
 Read STATUS.md and docs/research/assumptions-and-corrections.md first.
 
+## Documentation and specifications
+
+- Doc index and reading order: [docs/README.md](docs/README.md)
+- Spec chapter map: [specs/README.md](specs/README.md)
+- New spec chapters: copy [specs/_template.md](specs/_template.md)
+
+Normative specification work should land as **one spec chapter per pull request**, aligned with the chapter map in `specs/README.md`.
+
 ## Proposal format
 
 Describe the problem, existing alternatives, proposed change, trust assumptions, legal implications, privacy impact, verification method, and smallest useful test. Clearly separate facts from proposals.
