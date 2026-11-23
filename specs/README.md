@@ -6,7 +6,7 @@ Normative text will be drafted **one chapter per pull request** (see [../CONTRIB
 
 | Chapter | Title | Status |
 | --- | --- | --- |
-| 00 | Conventions and terminology (RFC 2119 keywords) | not started |
+| [00](00-conventions.md) | Conventions and terminology (RFC 2119 keywords) | discussion draft |
 | 01 | Signed portable entity record | not started |
 | 02 | History and timestamping | not started |
 | 03 | Verification | not started |
