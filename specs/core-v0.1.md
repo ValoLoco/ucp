@@ -2,6 +2,8 @@
 
 Status: discussion draft. Not an interoperability standard or production implementation. Claim labels: [00-conventions.md](00-conventions.md). Cited facts: [docs/claims.md](../docs/claims.md).
 
+**Note:** Normative field definitions and the seven-step verification sequence are superseded by [01-entity-record.md](01-entity-record.md). This file is retained for history and cross-links.
+
 ## Purpose
 
 Describe a portable entity record whose claims, authority, and history can be independently examined without implying legal recognition.

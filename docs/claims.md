@@ -15,6 +15,18 @@ Master register for **verified fact (with source)** statements used in UCP docum
 | C-009 | verified fact (with source) | GLEIF operates the global Legal Entity Identifier system for identifying legal entities in participating jurisdictions. | [GLEIF](https://www.gleif.org/) | `docs/architecture.md` |
 | C-010 | verified fact (with source) | UNCITRAL publishes widely used texts on international commercial arbitration. | [UNCITRAL arbitration texts](https://uncitral.un.org/en/texts/arbitration) | `docs/research/assumptions-and-corrections.md` |
 | C-011 | verified fact (with source) | Repository hero image exists at `content/UCP-Article 1.png`. | This repository (path on disk) | `content/streams/season-01.md`, `README.md` |
+| C-012 | verified fact (with source) | W3C Verifiable Credentials 2.0 family became W3C Recommendations on 15 May 2025. | [W3C news](https://www.w3.org/news/2025/the-verifiable-credentials-2-0-family-of-specifications-is-now-a-w3c-recommendation/) | `specs/01-entity-record.md` |
+| C-013 | verified fact (with source) | After an LEI is obtained, a legal entity may obtain a vLEI through a Qualified vLEI Issuer. | [GLEIF Get a vLEI](https://www.gleif.org/en/organizational-identity/get-an-lei-vlei/get-a-vlei) | `specs/01-entity-record.md` |
+| C-014 | verified fact (with source) | GLEIF vLEI Ecosystem Governance Framework includes Technical Requirements Part 1: KERI Infrastructure. | [GLEIF vLEI EGF](https://www.gleif.org/en/organizational-identity/become-a-vlei-issuer-qvi/vlei-ecosystem-governance-framework) | `specs/01-entity-record.md` |
+| C-015 | verified fact (with source) | `did:btcr2` specification states active development and possible breaking changes (page dated 20 November 2026). | [did:btcr2](https://dcdpr.github.io/did-btcr2/) | `specs/01-entity-record.md` |
+| C-016 | verified fact (with source) | GitHub `decentralized-identity/ion` last default-branch push was 2023-08-25. | [GitHub ion](https://github.com/decentralized-identity/ion) | `specs/01-entity-record.md`, `docs/architecture.md` |
+| C-017 | verified fact (with source) | GitHub `MicroStrategy/did-btc-spec` last commit was 2024-08-22. | [GitHub did-btc-spec](https://github.com/MicroStrategy/did-btc-spec) | `specs/01-entity-record.md` |
+| C-018 | verified fact (with source) | OpenTimestamps: a timestamp proves some data existed prior to a point in time. | [OpenTimestamps](https://opentimestamps.org/) | `specs/01-entity-record.md` |
+| C-019 | verified fact (with source) | Earth-to-Mars command latency for Perseverance is between 3 and 22 minutes depending on orbits. | [NASA Science blog](https://science.nasa.gov/blog/speaking-percys-language-how-to-talk-so-perseverance-will-listen/) | `specs/01-entity-record.md` |
+| C-020 | verified fact (with source) | PyPI `opentimestamps-client` version 0.8.0 published 2026-10-27. | [PyPI](https://pypi.org/project/opentimestamps-client/) | `specs/01-entity-record.md` |
+| C-021 | verified fact (with source) | Bundle Protocol version 7 is [RFC 9171](https://www.rfc-editor.org/rfc/rfc9171.html). | [RFC 9171](https://www.rfc-editor.org/rfc/rfc9171.html) | `specs/01-entity-record.md` |
+| C-022 | verified fact (with source) | Lightning Labs describes L402 as Lightning machine payment authentication for API access. | [Lightning Engineering](https://lightning.engineering/posts/2026-02-11-ln-agent-tools/) | `specs/01-entity-record.md` |
+| C-023 | verified fact (with source) | Proof announced the x401 agent authorization protocol on 2026-10-15. | [Proof blog](https://www.proof.com/blog/proof-launches-x401-giving-ai-agents-a-way-to-prove-who-they-represent---and-what-theyre-authorized-to-do) | `specs/01-entity-record.md` |
 
 ## Proposals and assumptions tracked here (not facts)
 
@@ -33,6 +45,11 @@ Master register for **verified fact (with source)** statements used in UCP docum
 | Q-002 | open question | Whether Taproot Assets or RGB fits a future ownership-record experiment. |
 | Q-003 | open question | Earth-Mars settlement patterns using Lightning or HTLCs under long light lag. |
 | Q-004 | open question | Whether AI agents should receive legal personality in any UCP version. |
+| Q-005 | open question | Mandatory canonical serialization and digest binding for signed entity records (JCS vs deterministic CBOR). |
+| Q-006 | open question | Normative fork resolution when two signed successors share a predecessor digest. |
+| Q-007 | open question | Whether `did:btco` ordinals inscription method is suitable for long-term UCP identifiers. |
+| Q-008 | open question | Whether UNCITRAL Model Law on Identity Management and Trust Services (2022) should inform `authorityPolicy` (primary text not machine-verified here). |
+| Q-009 | open question | Required Bitcoin confirmation depth for `anchorReceipt` before a verifier may return valid. |
 
 ## Removed or softened in this audit
 
