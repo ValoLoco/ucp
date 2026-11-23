@@ -1,18 +1,18 @@
 # BUENATURA: Developing UCP in public
 
-Format: open research and design sessions, not announcements of institutional partnerships or legal recognition.
+Format: open research and design sessions, not announcements of institutional partnerships or legal recognition. Use claim labels from [specs/00-conventions.md](../../specs/00-conventions.md).
 
 ## Session 1: The commercial layer beyond Earth
 
-Present the article and separate the long-term vision from the first deliverable. Output: problem statement and prioritized objections.
+Present the article and separate the long-term **proposal** from the first deliverable. Output: problem statement and prioritized objections.
 
 ## Session 2: What already exists?
 
-Examine entity identifiers, registries, credentials, arbitration, and space-law frameworks. Output: sourced gap analysis, including reasons not to build.
+Examine entity identifiers, registries, credentials, arbitration, and space-law frameworks. Output: sourced gap analysis, including reasons not to build. Register **verified fact (with source)** findings in [docs/claims.md](../../docs/claims.md).
 
 ## Session 3: Why Bitcoin, and where not?
 
-Compare signed records, timestamping, settlement, adjacent networks, and non-blockchain alternatives. Output: trust-assumption matrix and provisional decision.
+Compare signed records, timestamping, settlement, adjacent networks, and non-blockchain alternatives. Output: trust-assumption matrix and provisional **assumption** decisions.
 
 ## Session 4: Define the entity record
 
@@ -32,4 +32,4 @@ Seek expertise rather than celebrity endorsement. Potential audiences include Sp
 
 ## Article image
 
-The generated hero image is not yet stored in this repository. Upload the actual approved asset separately before referencing a repository image path. Do not commit a fabricated image or broken asset link.
+**Verified fact (with source):** The README references `content/UCP-Article 1.png`, which is present in this repository. Replace only when an updated approved asset is available. Do not commit unapproved or placeholder imagery.

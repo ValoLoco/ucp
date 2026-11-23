@@ -2,7 +2,7 @@
 
 By Valentin Kranz, BUENATURA
 
-Editorial status: concept article draft. Primary-source fact checking and legal review remain required before publication.
+> Editorial status: **Proposal** article draft. Primary-source fact checking and legal review remain required before publication. Claim labels: [specs/00-conventions.md](../../specs/00-conventions.md). Cited facts: [docs/claims.md](../../docs/claims.md).
 
 To Elon Musk and the teams at SpaceX, to builders of AI systems, and to everyone developing the next generation of space infrastructure: what commercial foundations should independent actors share beyond Earth?
 
@@ -14,7 +14,9 @@ Imagine an equipment supplier serving customers on Earth, in orbit, and eventual
 
 These are design questions for a future commercial system, not claims that existing law disappears beyond Earth.
 
-Our proposal is to investigate a Universal Company Protocol: an open framework for portable company records, verifiable authority, and cooperation across legal and technical boundaries.
+**Verified fact (with source):** States must authorize and supervise non-governmental space activities under Outer Space Treaty Article VI ([UNOOSA](https://www.unoosa.org/oosa/en/ourwork/spacelaw/treaties/outerspacetreaty.html) (accessed 2026-11-23)).
+
+**Proposal:** Investigate a Universal Company Protocol: an open framework for portable company records, verifiable authority, and cooperation across legal and technical boundaries.
 
 ## A protocol, not a government
 
@@ -26,7 +28,9 @@ Legal recognition would remain a separate question for the relevant institutions
 
 We propose evaluating Bitcoin as an optional commitment and settlement foundation. The research question is where it adds independently verifiable evidence or useful settlement capability, and where a signed document or existing standard is enough.
 
-We will not assume that every record needs a blockchain, that every share should become a token, or that Earth-based payment assumptions work across interplanetary distances.
+We do not assume that every record needs a blockchain, that every share should become a token, or that Earth-based payment assumptions work across interplanetary distances.
+
+**Verified fact (with source):** One-way Earth-Mars light time ranges from about 3 to about 22.4 minutes ([NASA Mars Relay Network](https://science.nasa.gov/mars/mars-relay-network/) (accessed 2026-11-23)). Settlement and contract timing across that lag are **open questions** for UCP.
 
 Bitcoin-first should mean disciplined evaluation, not technology by slogan.
 
@@ -48,6 +52,6 @@ SpaceX and Elon Musk are natural participants in this discussion, but the design
 
 What already solves this problem? What must remain local? What should never be automated? Where does a shared protocol genuinely reduce friction?
 
-We will develop these questions publicly through BUENATURA articles and YouTube live streams. The repository is https://github.com/ValoLoco/ucp.
+We plan to develop these questions publicly through BUENATURA articles and YouTube live streams. The repository is https://github.com/ValoLoco/ucp.
 
 The ambition is large. The next step should be small, testable, and useful.

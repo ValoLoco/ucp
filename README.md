@@ -2,32 +2,34 @@
 
 ![Universal Company Protocol hero image](content/UCP-Article%201.png)
 
-A Bitcoin-native protocol for portable legal entities, capital tables, commercial contracts, arbitration, reputation, settlement, and governance beyond Earth.
+> **Proposal:** A Bitcoin-native open framework for portable entity records, capital tables, commercial contracts, arbitration workflows, reputation, settlement, and governance concepts relevant to commerce beyond Earth. UCP is early-stage research, not a deployed protocol. See [STATUS.md](STATUS.md) and [docs/claims.md](docs/claims.md). Claim labels: [specs/00-conventions.md](specs/00-conventions.md).
 
 ## Status
 
-Concept draft v0.1. Under active public development.
+Concept draft v0.1. Under active public development. No legal recognition, endorsements, or production readiness are claimed.
 
 ## Principles
 
 - Maximum strength, minimum weight.
 - Build only what a real company needs now.
-- Contracts, code, and legal state use one machine-readable representation.
-- Bitcoin provides settlement finality, timestamping, and a neutral base layer.
+- **Proposal:** Contracts, code, and legal state could share one machine-readable representation where law permits.
+- **Assumption:** Bitcoin may provide settlement finality, timestamping, and a neutral base layer for optional commitments.
 
 ## Architecture
 
-| Layer | Name | Purpose |
-|---|---|---|
-| L1 | Universal Legal Entity Identifier (ULEI) | Portable, verifiable company identity |
-| L2 | Universal Capital Table (UCT) | Portable, compliant ownership and securities records |
-| L3 | Universal Commercial Code (UCC-X) | Standard commercial contracts and execution logic |
-| L4 | Interstellar Commercial Court (ICC-X) | Dispute resolution and enforceable rulings |
-| L5 | Universal Reputation Ledger (URL) | Verifiable attestations and operational history |
-| L6 | Interstellar Settlement Layer (ISL) | Multi-asset settlement with light-lag tolerance |
-| L7 | Algorithmic Governance Framework (AGF) | Entity governance, authority delegation, and AI-agent permissions |
+**Proposal:** The table below is a problem map, not a product roadmap.
 
-See `docs/architecture.md`.
+| Layer | Name | Purpose |
+| --- | --- | --- |
+| L1 | Universal Legal Entity Identifier (ULEI) | Portable, verifiable company identity (research) |
+| L2 | Universal Capital Table (UCT) | Portable ownership and securities records (research) |
+| L3 | Universal Commercial Code (UCC-X) | Standard commercial contracts and execution logic (research) |
+| L4 | Interstellar Commercial Court (ICC-X) | Dispute resolution workflows; enforcement depends on jurisdiction |
+| L5 | Universal Reputation Ledger (URL) | Verifiable attestations and operational history (research) |
+| L6 | Interstellar Settlement Layer (ISL) | Multi-asset settlement concepts with light-lag awareness (research) |
+| L7 | Algorithmic Governance Framework (AGF) | Entity governance, authority delegation, and AI-agent permissions (research) |
+
+See [docs/architecture.md](docs/architecture.md).
 
 ## Documentation
 
@@ -36,8 +38,8 @@ See `docs/architecture.md`.
 
 ## Development
 
-This repository is developed publicly and discussed on BUENATURA live streams.
+This repository is developed publicly and discussed on BUENATURA live streams. Sessions are research meetings, not partnership announcements.
 
 ## License
 
-Specifications: CC-BY-4.0. Reference implementations: MIT.
+**Proposal:** Specifications under CC-BY-4.0. Reference implementations under MIT. Contribution terms must be finalized before external contributions (see [CONTRIBUTING.md](CONTRIBUTING.md)).

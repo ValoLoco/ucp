@@ -51,6 +51,8 @@ Repository chapter map statuses are documented in [README.md](README.md). This c
 
 Legal or regulatory **effects** MUST NOT be labeled verified fact unless supported by cited primary legal text and qualified review; default to open question or assumption per [CONTRIBUTING.md](../CONTRIBUTING.md).
 
+**Proposal:** New or updated verified facts with external sources SHOULD be recorded in [docs/claims.md](../docs/claims.md). Informative documents under `docs/`, `content/`, and the root README SHOULD use the same four claim labels; long-term vision and layer maps are **proposal**, not implementation commitments.
+
 ### Normative and informative text
 
 **Proposal:**

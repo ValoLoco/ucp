@@ -1,6 +1,6 @@
 # UCP Core v0.1
 
-Status: discussion draft. Not an interoperability standard or production implementation.
+Status: discussion draft. Not an interoperability standard or production implementation. Claim labels: [00-conventions.md](00-conventions.md). Cited facts: [docs/claims.md](../docs/claims.md).
 
 ## Purpose
 
