@@ -34,6 +34,22 @@ Master register for **verified fact (with source)** statements used in UCP docum
 | C-028 | verified fact (with source) | OpenTimestamps client README: incomplete timestamps may need calendar assistance; `ots upgrade` adds the Bitcoin blockchain path and reports the timestamp complete. | [OpenTimestamps client README](https://github.com/opentimestamps/opentimestamps-client/blob/master/README.md) | `specs/03-verification.md` |
 | C-029 | verified fact (with source) | W3C VC Data Model 2.0 describes holder selective disclosure of credential properties to verifiers, including derived presentations. | [W3C VC Data Model 2.0](https://www.w3.org/TR/vc-data-model-2.0/#zero-knowledge-proofs) | `specs/04-privacy-disclosure.md` |
 | C-030 | verified fact (with source) | OpenTimestamps client README documents submitting stamp requests to remote calendar servers when creating a timestamp. | [OpenTimestamps client README](https://github.com/opentimestamps/opentimestamps-client/blob/master/README.md) | `specs/04-privacy-disclosure.md` |
+| C-031 | verified fact (with source) | Lightning Labs announced Taproot Assets v0.8 on 23 June 2026. | [Lightning Engineering post](https://lightning.engineering/posts/2026-06-23-tapd-0.8-launch/) | `specs/05-research-topics.md` |
+| C-032 | verified fact (with source) | RGB Protocol Association announced RGB v0.11.1 on Bitcoin mainnet on 17 July 2025. | [RGB mainnet launch](https://rgbprotocol.org/rgb-v0-11-1-mainnet-launch/) | `specs/05-research-topics.md` |
+| C-033 | verified fact (with source) | Ark Labs opened Arkade on 20 October 2025 and states it is not ready to handle life savings. | [Ark Labs post](https://arklabs.xyz/insights/press-start-arkade-goes-live/) | `specs/05-research-topics.md` |
+| C-034 | verified fact (with source) | BitVM describes Turing-complete Bitcoin contracts verified by fraud proofs; developed under ZeroSync. | [bitvm.org](https://bitvm.org/) | `specs/05-research-topics.md` |
+| C-035 | verified fact (with source) | RGB v0.11.1 launch text describes client-side validation with no validators or coordinators. | [RGB mainnet launch](https://rgbprotocol.org/rgb-v0-11-1-mainnet-launch/) | `specs/05-research-topics.md` |
+| C-036 | verified fact (with source) | IETF DTN WG is Active; charter states BPv7 is published and DTN is used in production worldwide. | [IETF DTN WG](https://datatracker.ietf.org/wg/dtn/about/) | `specs/05-research-topics.md` |
+| C-037 | verified fact (with source) | Unchained Bitcoin Astronomy essay cites Mars 3 to 22 light-minutes away, 6 to 44 minute round trip, and 10-minute Bitcoin block time. | [Unchained](https://www.unchained.com/bitcoin-astronomy/the-law-of-hash-horizons) | `specs/05-research-topics.md` |
+| C-038 | verified fact (with source) | U.S. OSC announced four SCC Pilot participants on 12 November 2026 from nearly 40 applications. | [OSC announcement](https://space.commerce.gov/osc-announces-the-space-commerce-certification-pilot-phase-cohort/) | `specs/05-research-topics.md` |
+| C-039 | verified fact (with source) | EUobserver reported ITRE adopted weakened EU Space Act position 19 November 2026; environmental certificate dropped; space cybersecurity toward NIS2 amendments. | [EUobserver](https://euobserver.com/249952/meps-gut-eu-commission-plan-for-regulating-space-industries/) | `specs/05-research-topics.md` |
+| C-040 | verified fact (with source) | McGill IASL hosts the PCA Optional Rules for outer space activities (PDF). | [McGill IASL](https://www.mcgill.ca/iasl/research/space-law/space-arbitration) | `specs/05-research-topics.md` |
+| C-041 | verified fact (with source) | GLEIF vLEI Ecosystem Governance Framework version 4.0 lists Primary Document version 1.2 dated March 25, 2026. | [GLEIF vLEI EGF](https://www.gleif.org/en/organizational-identity/become-a-vlei-issuer-qvi/vlei-ecosystem-governance-framework) | `specs/05-research-topics.md` |
+| C-042 | verified fact (with source) | KERI Foundation board lists Samuel M. Smith Technical Lead, Henk van Cann Chairman, Karla McKenna Advisory Lead. | [KERI Foundation](https://keri.foundation/about/board-governance/) | `specs/05-research-topics.md` |
+| C-043 | verified fact (with source) | Utah Division of Corporations publishes DAO/LLD registration and amendment guidance. | [Utah DAO](https://commerce.utah.gov/corporations/business-entities/dao/) | `specs/05-research-topics.md` |
+| C-044 | verified fact (with source) | Aon Q1 2026 space insurance report: insurers remain extremely selective for launch and in-orbit risks. | [Aon Q1 2026 PDF](https://assets.aon.com/-/media/files/aon/capabilities/risk-transfer/space-insurance-market-report---q1-2026.pdf) | `specs/05-research-topics.md` |
+| C-045 | verified fact (with source) | Article 001-the-missing-layer.md states granting AI legal personality is not proposed as a prerequisite. | [001-the-missing-layer.md](../content/articles/001-the-missing-layer.md) | `specs/05-research-topics.md` |
+| C-046 | verified fact (with source) | Andrea Harrington and Vincent Correia are Co-Directors of McGill Institute of Air and Space Law. | [McGill IASL about](https://www.mcgill.ca/iasl/about-us/about) | `specs/05-research-topics.md` |
 
 ## Proposals and assumptions tracked here (not facts)
 
@@ -73,6 +89,12 @@ Master register for **verified fact (with source)** statements used in UCP docum
 | Q-023 | open question | Per-record anchor commitment diversity to reduce timing linkability across records. |
 | Q-024 | open question | Whether stable `entityId` plus keys and anchors constitutes personal data for legal persons under any data-protection regime. |
 | Q-025 | open question | Data minimization metrics for conformance suites measuring over-publication by default. |
+| Q-026 | open question | Which securities frameworks could recognize Bitcoin-anchored tokens in a share register workflow without a traditional transfer agent. |
+| Q-027 | open question | Which UNCITRAL or model-law provisions adapt to machine-readable, delay-tolerant contract execution without new treaty negotiation. |
+| Q-028 | open question | Whether PCA Optional Rules for outer space were used in a published commercial case in the 2020s. |
+| Q-029 | open question | How a portable entity record binds LEI or vLEI without implying the cryptographic record is a legal person. |
+| Q-030 | open question | Which DTN assumptions a commercial settlement protocol should reuse versus payment-specific models beyond store-and-forward bundles. |
+| Q-031 | open question | How filed DAO LLC programs record authorized signers today and what portable verifiable history would add. |
 
 ## Removed or softened in this audit
 
