@@ -31,6 +31,7 @@ Master register for **verified fact (with source)** statements used in UCP docum
 | C-025 | verified fact (with source) | Blockstream Satellite broadcasts the Bitcoin blockchain worldwide 24/7 for free, including blocks, transactions, and complete block history. | [Blockstream Satellite](https://blockstream.github.io/satellite/) | `specs/02-entity-history.md` |
 | C-026 | verified fact (with source) | NASA Mars communications disruption white paper: crewed roundtrip direct Earth links face inevitable multi-day to multi-week blackout periods in representative analyses. | [NASA PDF](https://www.nasa.gov/wp-content/uploads/2024/01/mars-communications-disruption-and-delay.pdf) | `specs/02-entity-history.md` |
 | C-027 | verified fact (with source) | OpenTimestamps documents free default calendar servers for stamping without registration. | [OpenTimestamps](https://opentimestamps.org/) | `specs/02-entity-history.md` |
+| C-028 | verified fact (with source) | OpenTimestamps client README: incomplete timestamps may need calendar assistance; `ots upgrade` adds the Bitcoin blockchain path and reports the timestamp complete. | [OpenTimestamps client README](https://github.com/opentimestamps/opentimestamps-client/blob/master/README.md) | `specs/03-verification.md` |
 
 ## Proposals and assumptions tracked here (not facts)
 
@@ -56,6 +57,12 @@ Master register for **verified fact (with source)** statements used in UCP docum
 | Q-009 | open question | Required Bitcoin confirmation depth for `anchorReceipt` before a verifier may return valid. |
 | Q-010 | open question | Whether UCP MUST require OpenTimestamps proof upgrade before offline-verifiable anchor receipts. |
 | Q-011 | open question | Normative Bundle Protocol v7 custody profile for multi-hop entity history replication. |
+| Q-012 | open question | Whether history bundle wire format and reason code normativity should be standardized together. |
+| Q-013 | open question | Required mapping between machine-readable `reasonCodes` and chapter 01 human `reasons` strings. |
+| Q-014 | open question | Whether the history verifier `warnings` array is normative in the result object. |
+| Q-015 | open question | Recommended Bitcoin light-client method for offline anchor confirmation checks in conformance tests. |
+| Q-016 | open question | Whether history bundles should declare Bitcoin block height horizon for light-lag verifiers. |
+| Q-017 | open question | Whether verifier policy objects should be signed records in the entity history chain. |
 
 ## Removed or softened in this audit
 
