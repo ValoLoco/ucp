@@ -9,7 +9,7 @@ Normative text will be drafted **one chapter per pull request** (see [../CONTRIB
 | [00](00-conventions.md) | Conventions and terminology (RFC 2119 keywords) | discussion draft |
 | [01](01-entity-record.md) | Signed portable entity record | discussion draft |
 | [02](02-entity-history.md) | History and timestamping | discussion draft |
-| 03 | Verification | not started |
+| [03](03-verification.md) | Verification | discussion draft |
 | 04 | Privacy and disclosure | not started |
 | 05 | Later-layer research topics (cap table, contracts, disputes, reputation, settlement, governance) | not started |
 
