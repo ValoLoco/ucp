@@ -7,7 +7,7 @@ Normative text will be drafted **one chapter per pull request** (see [../CONTRIB
 | Chapter | Title | Status |
 | --- | --- | --- |
 | [00](00-conventions.md) | Conventions and terminology (RFC 2119 keywords) | discussion draft |
-| 01 | Signed portable entity record | not started |
+| [01](01-entity-record.md) | Signed portable entity record | discussion draft |
 | 02 | History and timestamping | not started |
 | 03 | Verification | not started |
 | 04 | Privacy and disclosure | not started |
@@ -19,7 +19,7 @@ Normative text will be drafted **one chapter per pull request** (see [../CONTRIB
 | --- | --- |
 | [core-v0.1.md](core-v0.1.md) | concept draft |
 
-Chapter 01 should absorb and supersede `core-v0.1.md` when written; until then, treat `core-v0.1.md` as the working concept for the first milestone per [../STATUS.md](../STATUS.md).
+Chapter [01](01-entity-record.md) supersedes `core-v0.1.md` for normative field and verification text; `core-v0.1.md` remains as a historical concept draft.
 
 ## Chapter 05 scope (research only)
 
