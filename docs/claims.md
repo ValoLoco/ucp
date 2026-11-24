@@ -32,6 +32,8 @@ Master register for **verified fact (with source)** statements used in UCP docum
 | C-026 | verified fact (with source) | NASA Mars communications disruption white paper: crewed roundtrip direct Earth links face inevitable multi-day to multi-week blackout periods in representative analyses. | [NASA PDF](https://www.nasa.gov/wp-content/uploads/2024/01/mars-communications-disruption-and-delay.pdf) | `specs/02-entity-history.md` |
 | C-027 | verified fact (with source) | OpenTimestamps documents free default calendar servers for stamping without registration. | [OpenTimestamps](https://opentimestamps.org/) | `specs/02-entity-history.md` |
 | C-028 | verified fact (with source) | OpenTimestamps client README: incomplete timestamps may need calendar assistance; `ots upgrade` adds the Bitcoin blockchain path and reports the timestamp complete. | [OpenTimestamps client README](https://github.com/opentimestamps/opentimestamps-client/blob/master/README.md) | `specs/03-verification.md` |
+| C-029 | verified fact (with source) | W3C VC Data Model 2.0 describes holder selective disclosure of credential properties to verifiers, including derived presentations. | [W3C VC Data Model 2.0](https://www.w3.org/TR/vc-data-model-2.0/#zero-knowledge-proofs) | `specs/04-privacy-disclosure.md` |
+| C-030 | verified fact (with source) | OpenTimestamps client README documents submitting stamp requests to remote calendar servers when creating a timestamp. | [OpenTimestamps client README](https://github.com/opentimestamps/opentimestamps-client/blob/master/README.md) | `specs/04-privacy-disclosure.md` |
 
 ## Proposals and assumptions tracked here (not facts)
 
@@ -63,6 +65,14 @@ Master register for **verified fact (with source)** statements used in UCP docum
 | Q-015 | open question | Recommended Bitcoin light-client method for offline anchor confirmation checks in conformance tests. |
 | Q-016 | open question | Whether history bundles should declare Bitcoin block height horizon for light-lag verifiers. |
 | Q-017 | open question | Whether verifier policy objects should be signed records in the entity history chain. |
+| Q-018 | open question | Whether `evidence-withheld` and `evidence-unavailable` should become normative chapter 03 reason codes and when each is blocking. |
+| Q-019 | open question | Selective disclosure credential format profile for `legalRegistrations` and offline revocation. |
+| Q-020 | open question | Normative minimal public record profile omitting sensitive fields from public bundles. |
+| Q-021 | open question | `entityId` correlation management across operational contexts with later continuity proofs. |
+| Q-022 | open question | Anchor receipt profiles that minimize calendar and chain observer metadata under Mars blackout constraints. |
+| Q-023 | open question | Per-record anchor commitment diversity to reduce timing linkability across records. |
+| Q-024 | open question | Whether stable `entityId` plus keys and anchors constitutes personal data for legal persons under any data-protection regime. |
+| Q-025 | open question | Data minimization metrics for conformance suites measuring over-publication by default. |
 
 ## Removed or softened in this audit
 
