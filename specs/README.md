@@ -10,7 +10,7 @@ Normative text will be drafted **one chapter per pull request** (see [../CONTRIB
 | [01](01-entity-record.md) | Signed portable entity record | discussion draft |
 | [02](02-entity-history.md) | History and timestamping | discussion draft |
 | [03](03-verification.md) | Verification | discussion draft |
-| 04 | Privacy and disclosure | not started |
+| [04](04-privacy-disclosure.md) | Privacy and disclosure | discussion draft |
 | 05 | Later-layer research topics (cap table, contracts, disputes, reputation, settlement, governance) | not started |
 
 ## Existing drafts (outside numbered chapters)
