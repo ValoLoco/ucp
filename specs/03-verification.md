@@ -312,7 +312,7 @@ Minimal falsification experiments:
 
 2. **Verification (external experts):** What default values for `maxRevocationDataAge` and `minAnchorConfirmations` should pilots publish for high-consequence updates versus routine updates?
 
-3. **Verification (external experts):** Should implementations MUST emit chapter 01 `reasons` strings whenever they emit `reasonCodes`, and is a published mapping table required for interoperability ([Q-013](../docs/claims.md))?
+3. **Verification (external experts):** MUST conforming implementations emit chapter 01 `reasons` strings whenever they emit `reasonCodes`, and is a published mapping table required for interoperability ([Q-013](../docs/claims.md))?
 
 4. **Verification (external experts):** Should the `warnings` array be normative for non-blocking conditions, or should warnings appear only in informative logs outside the result object ([Q-014](../docs/claims.md))?
 
