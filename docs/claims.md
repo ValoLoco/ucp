@@ -50,6 +50,9 @@ Master register for **verified fact (with source)** statements used in UCP docum
 | C-044 | verified fact (with source) | Aon Q1 2026 space insurance report: insurers remain extremely selective for launch and in-orbit risks. | [Aon Q1 2026 PDF](https://assets.aon.com/-/media/files/aon/capabilities/risk-transfer/space-insurance-market-report---q1-2026.pdf) | `specs/05-research-topics.md` |
 | C-045 | verified fact (with source) | Article 001-the-missing-layer.md states granting AI legal personality is not proposed as a prerequisite. | [001-the-missing-layer.md](../content/articles/001-the-missing-layer.md) | `specs/05-research-topics.md` |
 | C-046 | verified fact (with source) | Andrea Harrington and Vincent Correia are Co-Directors of McGill Institute of Air and Space Law. | [McGill IASL about](https://www.mcgill.ca/iasl/about-us/about) | `specs/05-research-topics.md` |
+| C-047 | verified fact (with source) | SHA-256 is specified in NIST FIPS 180-4 and reproduced in RFC 6234 (verified 2026-11-25). | [FIPS 180-4](https://csrc.nist.gov/pubs/fips/180-4/upd1/final), [RFC 6234](https://www.rfc-editor.org/rfc/rfc6234) | `specs/01-entity-record.md` |
+| C-048 | verified fact (with source) | W3C Controlled Identifiers v1.0 section 2.2.2 encodes an Ed25519 Multikey as prefix 0xed01 plus the 32-byte key, base58-btc with multibase header `z` (verified 2026-11-25). | [CID 1.0 Multikey](https://www.w3.org/TR/cid-1.0/#Multikey) | `specs/01-entity-record.md` |
+| C-049 | verified fact (with source) | RFC 8037 section 2 defines JWK key type `OKP` with `crv` `Ed25519` and the public key in `x` (verified 2026-11-25). | [RFC 8037](https://www.rfc-editor.org/rfc/rfc8037#section-2) | `specs/01-entity-record.md` |
 
 ## Proposals and assumptions tracked here (not facts)
 
@@ -95,6 +98,10 @@ Master register for **verified fact (with source)** statements used in UCP docum
 | Q-029 | open question | How a portable entity record binds LEI or vLEI without implying the cryptographic record is a legal person. |
 | Q-030 | open question | Which DTN assumptions a commercial settlement protocol should reuse versus payment-specific models beyond store-and-forward bundles. |
 | Q-031 | open question | How filed DAO LLC programs record authorized signers today and what portable verifiable history would add. |
+| Q-032 | open question | Trusted reference time for checking key validity windows when `effectiveAt` is untrusted (chapter 01 open question 9). |
+| Q-033 | open question | Carried revocation material format behind `revocationRef` (chapter 01 open question 10). |
+| Q-034 | open question | Signature suite registry and whether one suite is mandatory (chapter 01 open question 11). |
+| Q-035 | open question | Who publishes official test vectors and by what process (chapter 01 open question 12). |
 
 ## Removed or softened in this audit
 

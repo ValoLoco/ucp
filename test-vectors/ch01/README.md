@@ -43,7 +43,7 @@ Regenerate after changing the generator: `python3 test-vectors/ch01/generate.py`
 | 06-authority-policy-unauthorized-signer | invalid `signature-missing` | key listed but not in `authorizedSigners` |
 | 07-authority-policy-self-granted | invalid `signature-missing` | successor tries to grant itself a new key |
 | 08-malformed-missing-field | invalid `missing-field` | `entityId` missing |
-| 09-malformed-type | invalid `x-ref-field-invalid` | `requiredSignatureCount` 0 |
+| 09-malformed-type | invalid `field-invalid` | `requiredSignatureCount` 0 |
 | 10-indeterminate-anchor | indeterminate `anchor-data-unavailable` | anchor cannot be checked offline |
 | 11-anchor-digest-mismatch | invalid `anchor-digest-mismatch` | receipt commits to another digest |
 | 12-predecessor-unavailable | indeterminate `predecessor-unavailable` | predecessor withheld |
@@ -58,5 +58,10 @@ Regenerate after changing the generator: `python3 test-vectors/ch01/generate.py`
 | 21-registrar-blocking | indeterminate | blocking registrar policy |
 | 22-valid-genesis-jwk | valid | `publicKeyJwk` key form |
 | 23-valid-successor-2-of-2 | valid | threshold met |
+| 24-aggregate-invalid-codes | invalid `signature-invalid`, `anchor-digest-mismatch` | step 7 union of invalid codes |
+| 25-entity-id-mismatch | invalid `entity-id-mismatch` | successor changes `entityId` |
+| 26-unsupported-suite-blocking | indeterminate `unsupported-suite` | only signature under an unsupported suite |
+| 27-unsupported-suite-extra | valid, warning `unsupported-suite` | threshold met, extra unsupported signature |
+| 28-predecessor-unavailable-anchor-mismatch | invalid `anchor-digest-mismatch` | step 6 still runs after step 2 indeterminate |
 
 Chapter 01 minimal falsification items 1, 2 and 4 are vectors 13, 03 and 12. Item 3 (a complete OpenTimestamps proof reaching valid) cannot be built until an anchoring profile exists; see SPEC-GAPS G-10.

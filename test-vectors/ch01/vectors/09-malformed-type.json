@@ -53,7 +53,7 @@
   "expected": {
     "status": "invalid",
     "reasonCodes": [
-      "x-ref-field-invalid"
+      "field-invalid"
     ],
     "warnings": []
   }

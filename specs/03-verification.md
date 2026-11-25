@@ -89,7 +89,7 @@ A conforming verifier MUST accept at minimum:
 6. **Verification policy:** A local policy object specifying at least:
    - Supported `protocolVersion` values.
    - Accepted anchoring profiles and confirmation depth assumptions ([Q-009](../docs/claims.md)).
-   - Whether external registrar confirmation is required for `legalRegistrations` (if required and unavailable, see chapter 01 step 5).
+   - Whether external registrar confirmation is required for `legalRegistrations` (`requireRegistrarConfirmation`) and, if so, whether its absence is blocking (`registrarConfirmationBlocking`, default false); see chapter 01 step 5 (**proposal**).
    - `maxRevocationDataAge` for offline verification (see below).
    - `minAnchorConfirmations` and `allowProvisionalAnchors` for light-lag and offline anchor behavior.
 
@@ -120,10 +120,10 @@ If more than one record in the bundle has `previousRecordDigest: null` for the s
 For each record in the tip chain, run the chapter 01 seven-step sequence with these history-specific inputs:
 
 - **Step 2:** The predecessor MUST be the prior record in the supplied tip chain when contiguous; if the chain skips an intermediate digest, return `indeterminate` with `chain-gap` and reason `chain gap` in `reasons`.
-- **Step 5:** If policy requires external registrar confirmation that is unavailable, record a non-blocking `registrar-confirmation-unavailable` code on the record result (chapter 01 step 5).
+- **Step 5:** If policy requires external registrar confirmation that is unavailable, record `registrar-confirmation-unavailable` on the record result. It is non-blocking unless policy sets `registrarConfirmationBlocking`, in which case it is a blocking `indeterminate` (chapter 01 step 5; **proposal** resolving the earlier conflict between the two chapters).
 - **Step 6:** Apply anchor rules in Phase D; if required Bitcoin data is missing and policy does not allow provisional anchors, record blocking `anchor-data-unavailable`.
 
-Collect per-record `status` and reason information.
+Collect per-record `status` and reason information. Each record result uses chapter 01 evaluation order and step 7 aggregation, which applies the same rule as Phase E to a single record.
 
 #### Phase B: Chain integrity and forks
 
@@ -157,8 +157,8 @@ When an OpenTimestamps-style profile is used, incomplete proofs that still requi
 Aggregate per-record and history-level results:
 
 1. If any phase yields `invalid`, chain `status` is `invalid`. `reasonCodes` MUST be the union of all invalid codes (deduplicated).
-2. Else if any blocking `indeterminate` condition is present (`chain-gap`, `competing-successors`, `predecessor-unavailable`, `policy-unresolvable`, `revocation-data-missing`, `anchor-data-unavailable` when not waived, or blocking `anchor-confirmations-insufficient`), chain `status` is `indeterminate` with the union of blocking codes in `reasonCodes`.
-3. Else if only non-blocking conditions remain (`registrar-confirmation-unavailable`, `revocation-data-stale`, provisional anchor codes), chain `status` is `valid` and those codes appear in `warnings`.
+2. Else if any blocking `indeterminate` condition is present (`chain-gap`, `competing-successors`, `predecessor-unavailable`, `policy-unresolvable`, `revocation-data-missing`, `unsupported-suite` when it leaves the signature threshold unmet, `registrar-confirmation-unavailable` when policy marks it blocking, `anchor-data-unavailable` when not waived, or blocking `anchor-confirmations-insufficient`), chain `status` is `indeterminate` with the union of blocking codes in `reasonCodes`.
+3. Else if only non-blocking conditions remain (`registrar-confirmation-unavailable` by default, `revocation-data-stale`, `unknown-signer`, `unsupported-suite` when the threshold is met without it, provisional anchor codes), chain `status` is `valid` and those codes appear in `warnings`.
 4. Else chain `status` is `valid` with empty `reasonCodes` and empty `warnings`.
 
 **Note:** This preserves chapter 01 intent that `indeterminate` is returned when evidence is incomplete ([01-entity-record.md](01-entity-record.md) step 7 note), including partitioned networks and unresolved forks.
@@ -185,19 +185,23 @@ The following reason codes are **proposal** until implementer experience confirm
 | `genesis-previous-not-null` | invalid | (history-level) |
 | `ambiguous-genesis` | indeterminate | (history-level) |
 | `missing-field` | invalid | step 1 |
+| `field-invalid` | invalid | step 1 (field present but malformed) |
 | `unsupported-protocol-version` | invalid or indeterminate | step 1 |
 | `predecessor-unavailable` | indeterminate | `predecessor unavailable` (step 2) |
 | `chain-gap` | indeterminate | `chain gap` |
 | `policy-unresolvable` | indeterminate | step 2 |
 | `signature-missing` | invalid | step 3 |
 | `signature-invalid` | invalid | step 3 |
+| `unknown-signer` | warning | step 3 (signature by a key outside `authorizedKeys`, not counted) |
+| `unsupported-suite` | indeterminate or warning | step 3 |
 | `key-expired` | invalid | step 3 |
 | `key-revoked` | invalid | step 3 |
 | `revocation-data-stale` | warning | step 3 |
 | `revocation-data-missing` | indeterminate | step 3 |
 | `digest-mismatch` | invalid | step 4 |
+| `entity-id-mismatch` | invalid | step 4 (`entityId` differs from predecessor) |
 | `competing-successors` | indeterminate | `competing successors` (step 4; chapter 02) |
-| `registrar-confirmation-unavailable` | warning | step 5 |
+| `registrar-confirmation-unavailable` | warning, or indeterminate when policy marks it blocking | step 5 |
 | `anchor-proof-invalid` | invalid | step 6 |
 | `anchor-digest-mismatch` | invalid | step 6 |
 | `anchor-confirmations-insufficient` | indeterminate or warning | step 6 |
@@ -248,7 +252,7 @@ Implementations MUST satisfy the following scenarios. Inputs are described logic
 | 2. Predecessor and policy | Phase A; predecessor from tip chain |
 | 3. Signatures and keys | Phase A and Phase C |
 | 4. Sequence and conflicts | Phase B; fork detection references chapter 02 |
-| 5. Registration evidence | Phase A non-blocking registrar code |
+| 5. Registration evidence | Phase A registrar code, non-blocking by default |
 | 6. Anchor receipt | Phase A and Phase D |
 | 7. Report | Phase E aggregation with `reasonCodes` |
 
