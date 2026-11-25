@@ -1,0 +1,64 @@
+{
+  "testOnly": true,
+  "description": "Successor without its predecessor (ch01 minimal falsification item 4).",
+  "record": {
+    "protocolVersion": "0.1.0",
+    "entityId": "ucp:entity:test-vector-only-fictional-entity",
+    "legalRegistrations": [
+      {
+        "jurisdiction": "EX-FICT",
+        "officialId": "FICT-TEST-0001",
+        "evidence": [
+          "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+        ]
+      }
+    ],
+    "authorizedKeys": [
+      {
+        "id": "test-key-a",
+        "publicKeyMultibase": "z6Mkjs2y7FwLHPaecRspUHJp3ZasZ1ACUfrfC9koVBVrzMFU",
+        "role": "administrator",
+        "validFrom": "2026-01-01T00:00:00Z"
+      },
+      {
+        "id": "test-key-b",
+        "publicKeyMultibase": "z6Mknjpoc7Vn88Y1RwG9sbZck42CXGPTYjAp7UntZCsZGRT3",
+        "role": "administrator",
+        "validFrom": "2026-01-01T00:00:00Z"
+      }
+    ],
+    "authorityPolicy": {
+      "authorizedSigners": [
+        "test-key-a"
+      ],
+      "requiredSignatureCount": 1
+    },
+    "documents": [
+      {
+        "label": "Fictional operating agreement",
+        "digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+      },
+      {
+        "label": "Fictional amendment",
+        "digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+      }
+    ],
+    "previousRecordDigest": "sha256:921a80d40a5ab6dc0c833140a95e9604310f14efa30b7b0ab96507d0ec8497f0",
+    "effectiveAt": "2026-07-01T12:00:00Z",
+    "signatures": [
+      {
+        "keyId": "test-key-a",
+        "suite": "ucp-ref-ed25519-jcs-sha256-2026",
+        "signature": "N0897ntfmAuuDnLbImclyx4HkqfQKTPedzyLHotIrCGyzElnM8lud0NnK1ObtDjbteE3t0GlNhgivITp3sUrBQ"
+      }
+    ],
+    "anchorReceipt": null
+  },
+  "expected": {
+    "status": "indeterminate",
+    "reasonCodes": [
+      "predecessor-unavailable"
+    ],
+    "warnings": []
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "testOnly": true,
+  "description": "protocolVersion 9.0.0 is not supported.",
+  "record": {
+    "protocolVersion": "9.0.0",
+    "entityId": "ucp:entity:test-vector-only-fictional-entity",
+    "legalRegistrations": [
+      {
+        "jurisdiction": "EX-FICT",
+        "officialId": "FICT-TEST-0001",
+        "evidence": [
+          "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+        ]
+      }
+    ],
+    "authorizedKeys": [
+      {
+        "id": "test-key-a",
+        "publicKeyMultibase": "z6Mkjs2y7FwLHPaecRspUHJp3ZasZ1ACUfrfC9koVBVrzMFU",
+        "role": "administrator",
+        "validFrom": "2026-01-01T00:00:00Z"
+      },
+      {
+        "id": "test-key-b",
+        "publicKeyMultibase": "z6Mknjpoc7Vn88Y1RwG9sbZck42CXGPTYjAp7UntZCsZGRT3",
+        "role": "administrator",
+        "validFrom": "2026-01-01T00:00:00Z"
+      }
+    ],
+    "authorityPolicy": {
+      "authorizedSigners": [
+        "test-key-a"
+      ],
+      "requiredSignatureCount": 1
+    },
+    "documents": [
+      {
+        "label": "Fictional operating agreement",
+        "digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+      }
+    ],
+    "previousRecordDigest": null,
+    "effectiveAt": "2026-06-15T12:00:00Z",
+    "signatures": [
+      {
+        "keyId": "test-key-a",
+        "suite": "ucp-ref-ed25519-jcs-sha256-2026",
+        "signature": "o6f3URo1Y5iSIhbUJdQSb0sxy9OlbAOaOU5JuxwUxN_QeQk1VVb4hngwGyN-DFL5Il0mCO7HEu0Ffe7zAC0SBQ"
+      }
+    ],
+    "anchorReceipt": null
+  },
+  "expected": {
+    "status": "invalid",
+    "reasonCodes": [
+      "unsupported-protocol-version"
+    ],
+    "warnings": []
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "testOnly": true,
+  "description": "Genesis using publicKeyJwk instead of publicKeyMultibase.",
+  "record": {
+    "protocolVersion": "0.1.0",
+    "entityId": "ucp:entity:test-vector-only-fictional-entity",
+    "legalRegistrations": [
+      {
+        "jurisdiction": "EX-FICT",
+        "officialId": "FICT-TEST-0001",
+        "evidence": [
+          "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+        ]
+      }
+    ],
+    "authorizedKeys": [
+      {
+        "id": "test-key-a",
+        "publicKeyJwk": {
+          "kty": "OKP",
+          "crv": "Ed25519",
+          "x": "UGGWZ2-FQNmbPKwXg2y-tfuX4GVvsTHALEy2fS0xIw8"
+        },
+        "role": "administrator"
+      }
+    ],
+    "authorityPolicy": {
+      "authorizedSigners": [
+        "test-key-a"
+      ],
+      "requiredSignatureCount": 1
+    },
+    "documents": [
+      {
+        "label": "Fictional operating agreement",
+        "digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+      }
+    ],
+    "previousRecordDigest": null,
+    "effectiveAt": "2026-06-15T12:00:00Z",
+    "signatures": [
+      {
+        "keyId": "test-key-a",
+        "suite": "ucp-ref-ed25519-jcs-sha256-2026",
+        "signature": "rlwjJI7gL1yub2_hd1smBqtgjG9xiG6D41oVQI8mSo7INJF22ljpnn-RgVMTb8cy98EhcQ0qL8EQe2tUKf81DQ"
+      }
+    ],
+    "anchorReceipt": null
+  },
+  "expected": {
+    "status": "valid",
+    "reasonCodes": [],
+    "warnings": []
+  }
+}
