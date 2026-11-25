@@ -1,0 +1,22 @@
+{
+  "testOnly": true,
+  "warning": "TEST ONLY. These private keys are derived from public strings and are known to everyone. Never use them for real records.",
+  "derivation": "seed = SHA-256('UCP-TEST-VECTOR-ONLY-NOT-A-REAL-KEY:' + name); Ed25519 private key = seed (RFC 8032)",
+  "keys": [
+    {
+      "name": "test-key-a",
+      "seedHex": "954a0ef47a182ba60b21318dc1869c86f0bd2f238aa201fa32e81d1a1389ecf6",
+      "publicKeyMultibase": "z6Mkjs2y7FwLHPaecRspUHJp3ZasZ1ACUfrfC9koVBVrzMFU"
+    },
+    {
+      "name": "test-key-b",
+      "seedHex": "0e98ab74c61c5b547747e4b25eb3b8be276f35af7ce2019a4cfd87c2ed4b902c",
+      "publicKeyMultibase": "z6Mknjpoc7Vn88Y1RwG9sbZck42CXGPTYjAp7UntZCsZGRT3"
+    },
+    {
+      "name": "test-key-c",
+      "seedHex": "7b36bd695ad0e47c2d1609423b31ba84257ace57517a6d1ee2c842c9e3c24958",
+      "publicKeyMultibase": "z6MkmFH2bq65eqvi3VVHWkmP3S8GunkRfT6Ff1UonzcC4pgX"
+    }
+  ]
+}
