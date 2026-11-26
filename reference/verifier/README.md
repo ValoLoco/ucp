@@ -14,15 +14,15 @@ A **valid** result means only that the record passes these checks under this ref
 
 | Step | Chapter 01 rule | Reason codes (chapter 03 proposed list) |
 | --- | --- | --- |
-| 1 Format and protocol version | required fields, types, supported `protocolVersion` | `missing-field`, `unsupported-protocol-version`, `x-ref-field-invalid`, `x-ref-not-canonicalizable` |
-| 2 Predecessor and policy | obtain predecessor (positional or by digest from the carried bundle), resolve `authorityPolicy` from it | `predecessor-unavailable`, `policy-unresolvable` |
-| 3 Signatures and keys | Ed25519 signatures, `requiredSignatureCount` of `authorizedSigners`, validity window, carried revocation data | `signature-invalid`, `signature-missing`, `key-expired`, `key-revoked`, `revocation-data-missing`, `x-ref-unsupported-suite`, warning `x-ref-unknown-signer` |
-| 4 Sequence and conflicts | `previousRecordDigest` equals predecessor digest, competing successors in the bundle | `digest-mismatch`, `competing-successors`, `x-ref-entity-id-mismatch` |
+| 1 Format and protocol version | required fields, types, supported `protocolVersion` | `missing-field`, `field-invalid`, `unsupported-protocol-version` |
+| 2 Predecessor and policy | obtain predecessor (positional or by digest from the carried bundle), resolve `authorityPolicy` from it; genesis is self-authorized | `predecessor-unavailable`, `policy-unresolvable` |
+| 3 Signatures and keys | Ed25519 signatures, `requiredSignatureCount` of `authorizedSigners`, validity window, carried revocation data | `signature-invalid`, `signature-missing`, `key-expired`, `key-revoked`, `revocation-data-missing`, `unsupported-suite` (indeterminate if the threshold is unmet, else warning), warning `unknown-signer` |
+| 4 Sequence and conflicts | `previousRecordDigest` equals predecessor digest, competing successors in the bundle | `digest-mismatch`, `entity-id-mismatch`, `competing-successors` |
 | 5 Registration evidence | never treated as legal recognition; registrar confirmation per policy | `registrar-confirmation-unavailable` (warning by default) |
 | 6 Anchor receipt | skip if absent; digest commitment check; otherwise indeterminate offline | `anchor-proof-invalid`, `anchor-digest-mismatch`, `anchor-data-unavailable` |
-| 7 Report | valid with non-blocking warnings, else strongest failure | |
+| 7 Report | union of invalid codes, else union of blocking indeterminate codes, else valid with warnings | |
 
-Codes prefixed `x-ref-` are local to this reference, are not in any spec, and each maps to an entry in [SPEC-GAPS.md](SPEC-GAPS.md).
+All codes are from the chapter 03 proposed list. Steps record results and continue; only a step 1 failure stops verification, and a step 2 indeterminate skips steps 3 and 4 (chapter 01 evaluation order). Remaining open items are in [SPEC-GAPS.md](SPEC-GAPS.md).
 
 Offline only: no network calls of any kind. The verifier never contacts Bitcoin nodes, OpenTimestamps calendars, DID resolvers or registrars. Where chapter 01 needs data it does not have, it returns **indeterminate**.
 
@@ -32,9 +32,9 @@ Chapter 01 leaves the encoding open ([Q-005](../../docs/claims.md), chapter 01 o
 
 - **Canonicalization: RFC 8785 JCS** over the JSON record, restricted to strings, integers, booleans, null, arrays and objects (non-integer numbers are rejected). Why JCS for the reference: chapter 01 examples and fields are already JSON, JCS needs no schema or tag registry, the test vectors stay human-readable and diffable, and it can be implemented in about 60 lines with the standard library. Deterministic CBOR (RFC 8949 section 4.2) would give smaller, binary-safe signing inputs and remains a candidate; the choice for UCP stays an **open question**.
 - **Signing payload:** JCS of the record without `signatures` and `anchorReceipt` (chapter 01 `signatures` row).
-- **Record digest:** `sha256:` plus lowercase hex SHA-256 of JCS of the record without `anchorReceipt`, signatures included.
+- **Record digest:** `sha256:` plus lowercase hex SHA-256 of JCS of the record without `anchorReceipt`, signatures included (chapter 01 Record digest, proposal; only the JCS part is reference-specific).
 - **Suite name** `ucp-ref-ed25519-jcs-sha256-2026`: Ed25519 (RFC 8032) over the payload bytes, signature as unpadded base64url.
-- **Keys:** `publicKeyMultibase` as base58btc Ed25519 multikey (`z` + base58(0xed01 + key)) or `publicKeyJwk` as OKP/Ed25519. Exactly one per key.
+- **Keys:** `publicKeyMultibase` as base58btc Ed25519 multikey (`z` + base58(0xed01 + key)) or `publicKeyJwk` as OKP/Ed25519. Exactly one per key (chapter 01 Key encodings).
 - **Ed25519 library:** the `cryptography` package when installed, else the RFC 8032 section 6 reference algorithm bundled in `ed25519.py` (slow, not constant-time, fine for tests). Both paths pass RFC 8032 test 1.
 
 ## Run
@@ -50,7 +50,7 @@ Exit code of the CLI: 0 valid, 1 invalid, 3 indeterminate.
 
 ## Policy and evidence inputs (reference only)
 
-`policy` keys: `allowExperimentalVersions`, `requireRegistrarConfirmation`, `registrarConfirmationBlocking` (all default false). `evidence.revocations` maps a `revocationRef` to `{"revokedKeyIds": [...]}`. These shapes are not specified by any chapter; see SPEC-GAPS.md.
+`policy` keys: `allowExperimentalVersions`, `requireRegistrarConfirmation`, `registrarConfirmationBlocking` (all default false). `evidence.revocations` maps a `revocationRef` to `{"revokedKeyIds": [...]}`. The policy key names match chapter 01 step 5 and chapter 03 required inputs; the revocation shape is not specified by any chapter (chapter 01 open question 10).
 
 ## Scope limits
 

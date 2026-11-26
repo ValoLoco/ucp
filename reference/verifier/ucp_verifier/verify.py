@@ -1,16 +1,17 @@
 """Chapter 01 seven-step verifier, reference implementation.
 
 Every step follows specs/01-entity-record.md, "Seven-step verification
-sequence (normative)". Reason codes come from the proposed list in
-specs/03-verification.md. Codes prefixed `x-ref-` are local to this
-reference and are NOT part of any spec; each one maps to an entry in
-SPEC-GAPS.md.
+sequence (normative)", including its evaluation order (steps record
+results; only steps 1 and 2 stop later steps) and the step 7 aggregation
+shared with chapter 03 Phase E. Reason codes come from the proposed list
+in specs/03-verification.md. Open items are tracked in SPEC-GAPS.md.
 
 Reference choices (Proposal, not normative):
 - signing payload: RFC 8785 JCS of the record without `signatures` and
   `anchorReceipt`;
 - record digest: `sha256:` + hex SHA-256 of JCS of the record without
-  `anchorReceipt` (signatures included);
+  `anchorReceipt` (signatures included), as chapter 01 "Record digest"
+  proposes; JCS itself is still open (Q-005);
 - signature suite `ucp-ref-ed25519-jcs-sha256-2026`: Ed25519 over the
   signing payload bytes, signature as unpadded base64url.
 """
@@ -133,7 +134,7 @@ class _Step:
 def structural_problems(record: Any) -> list[tuple[str, str]]:
     """Return (code, reason) pairs for missing fields and type violations."""
     if not isinstance(record, dict):
-        return [("x-ref-field-invalid", "record is not a JSON object")]
+        return [("field-invalid", "record is not a JSON object")]
     out: list[tuple[str, str]] = []
     for name in REQUIRED_FIELDS:
         if name not in record:
@@ -142,7 +143,7 @@ def structural_problems(record: Any) -> list[tuple[str, str]]:
         return out
 
     def bad(reason: str) -> None:
-        out.append(("x-ref-field-invalid", reason))
+        out.append(("field-invalid", reason))
 
     if not _is_str(record["protocolVersion"]) or not SEMVER_RE.match(record["protocolVersion"]):
         bad("protocolVersion is not a semantic version string")
@@ -213,8 +214,11 @@ def structural_problems(record: Any) -> list[tuple[str, str]]:
             bad("authorityPolicy.requiredSignatureCount exceeds the number of authorizedSigners")
         if "recoveryPolicy" in pol and not isinstance(pol["recoveryPolicy"], dict):
             bad("authorityPolicy.recoveryPolicy must be an object")
-        if "delegationPolicy" in pol and not isinstance(pol["delegationPolicy"], (dict, list)):
-            bad("authorityPolicy.delegationPolicy must be an object or array")
+        if "delegationPolicy" in pol and (
+            not isinstance(pol["delegationPolicy"], list)
+            or not all(isinstance(d, dict) for d in pol["delegationPolicy"])
+        ):
+            bad("authorityPolicy.delegationPolicy must be an array of delegation objects")
 
     docs = record["documents"]
     if not isinstance(docs, list):
@@ -248,7 +252,7 @@ def structural_problems(record: Any) -> list[tuple[str, str]]:
         try:
             canonicalize(record)
         except CanonicalizationError as exc:
-            out.append(("x-ref-not-canonicalizable", f"record cannot be canonicalized: {exc}"))
+            out.append(("field-invalid", f"record cannot be canonicalized: {exc}"))
     return out
 
 
@@ -325,20 +329,34 @@ def verify_record(
     s2 = _Step(2, "predecessor-and-policy")
     steps.append(s2)
     prev_digest = record["previousRecordDigest"]
+    context: dict | None
     if prev_digest is None:
-        context = record  # genesis: the record's own keys and policy (SPEC-GAPS G-03)
+        context = record  # genesis is self-authorized (ch01 step 2)
     else:
+        # Positional predecessor first, else lookup by digest (ch01 step 2).
         pred = predecessor
         if pred is None:
             pred = next((r for r in bundle if _safe_digest(r) == prev_digest), None)
         if pred is None:
             s2.fail("indeterminate", "predecessor-unavailable", "predecessor unavailable")
-            return finish()
-        if structural_problems(pred):
+            context = None
+        elif structural_problems(pred):
             s2.fail("indeterminate", "policy-unresolvable", "authorityPolicy cannot be resolved from predecessor")
-            return finish()
-        predecessor = pred
-        context = pred
+            context = None
+        else:
+            predecessor = pred
+            context = pred
+    if context is not None:
+        _signatures_and_sequence(record, context, predecessor, bundle, ev, steps)
+    _evidence_and_anchor(record, pol, steps)
+    steps.append(_Step(7, "report"))
+    return finish()
+
+
+def _signatures_and_sequence(record: dict, context: dict, predecessor: dict | None,
+                             bundle: list, ev: dict, steps: list) -> None:
+    """Steps 3 and 4. Skipped by the caller when step 2 is indeterminate."""
+    prev_digest = record["previousRecordDigest"]
     ctx_keys = {k["id"]: k for k in context["authorizedKeys"]}
     ctx_policy = context["authorityPolicy"]
 
@@ -349,13 +367,14 @@ def verify_record(
     effective = parse_rfc3339(record["effectiveAt"])
     signers = set(ctx_policy["authorizedSigners"])
     counted: set[str] = set()
+    unsupported: list[str] = []
     for sig in record["signatures"]:
         if sig["suite"] != REFERENCE_SUITE:
-            s3.fail("indeterminate", "x-ref-unsupported-suite", f"signature suite {sig['suite']} not supported")
+            unsupported.append(sig["suite"])
             continue
         key = ctx_keys.get(sig["keyId"])
         if key is None:
-            s3.warn("x-ref-unknown-signer", f"signature by {sig['keyId']} is not from an authorized key; ignored")
+            s3.warn("unknown-signer", f"signature by {sig['keyId']} is not from an authorized key; ignored")
             continue
         try:
             raw_sig = b64url_decode(sig["signature"])
@@ -379,15 +398,15 @@ def verify_record(
                 s3.fail("invalid", "key-revoked", f"key {sig['keyId']} is revoked")
                 continue
         counted.add(sig["keyId"])
-    if s3.outcome != "invalid" and len(counted) < ctx_policy["requiredSignatureCount"]:
-        if s3.outcome == "pass":
-            s3.fail(
-                "invalid",
-                "signature-missing",
-                f"{len(counted)} of {ctx_policy['requiredSignatureCount']} required signatures present",
-            )
-    if s3.outcome != "pass":
-        return finish()
+    required = ctx_policy["requiredSignatureCount"]
+    if unsupported and len(counted) >= required:
+        s3.warn("unsupported-suite", f"uncounted signatures under unsupported suites: {sorted(set(unsupported))}")
+    elif s3.outcome == "pass" and len(counted) < required:
+        if unsupported:
+            s3.fail("indeterminate", "unsupported-suite",
+                    f"{len(counted)} of {required} required signatures verified; others use unsupported suites")
+        else:
+            s3.fail("invalid", "signature-missing", f"{len(counted)} of {required} required signatures present")
 
     # Step 4: sequence and conflicts.
     s4 = _Step(4, "sequence-and-conflicts")
@@ -396,7 +415,7 @@ def verify_record(
         if record_digest(predecessor) != prev_digest:
             s4.fail("invalid", "digest-mismatch", "previousRecordDigest does not match predecessor digest")
         elif predecessor["entityId"] != record["entityId"]:
-            s4.fail("invalid", "x-ref-entity-id-mismatch", "entityId differs from predecessor")
+            s4.fail("invalid", "entity-id-mismatch", "entityId differs from predecessor")
         else:
             own = record_digest(record)
             rivals = [
@@ -408,18 +427,21 @@ def verify_record(
             ]
             if rivals:
                 s4.fail("indeterminate", "competing-successors", "competing successors")
-    if s4.outcome != "pass":
-        return finish()
 
+
+def _evidence_and_anchor(record: dict, pol: dict, steps: list) -> None:
+    """Steps 5 and 6. They run even when earlier steps failed (ch01 step 7)."""
     # Step 5: registration evidence. Presence is never legal recognition.
     s5 = _Step(5, "registration-evidence")
     steps.append(s5)
     if pol["requireRegistrarConfirmation"]:
-        # This reference has no offline registrar confirmation format (SPEC-GAPS G-09).
+        # No offline registrar evidence format exists yet (ch01 open question 13),
+        # so confirmation is never available here. Non-blocking unless policy
+        # sets registrarConfirmationBlocking (ch01 step 5, ch03 Phase A).
         if pol["registrarConfirmationBlocking"]:
             s5.fail("indeterminate", "registrar-confirmation-unavailable", "registrar confirmation unavailable offline")
-            return finish()
-        s5.warn("registrar-confirmation-unavailable", "registrar confirmation unavailable offline")
+        else:
+            s5.warn("registrar-confirmation-unavailable", "registrar confirmation unavailable offline")
 
     # Step 6: anchor receipt.
     s6 = _Step(6, "anchor-receipt")
@@ -439,12 +461,6 @@ def verify_record(
                 "anchor-data-unavailable",
                 f"anchor profile {receipt['profile']} cannot be verified offline by this reference",
             )
-    if s6.outcome != "pass":
-        return finish()
-
-    # Step 7: report.
-    steps.append(_Step(7, "report"))
-    return finish()
 
 
 def _safe_digest(r: Any) -> str | None:

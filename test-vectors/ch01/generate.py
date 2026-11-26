@@ -125,14 +125,14 @@ def build() -> dict[str, dict]:
     s4 = sign(successor(g, authorityPolicy={"authorizedSigners": ["test-key-c"], "requiredSignatureCount": 1},
                         authorizedKeys=[key("test-key-c")]), "test-key-c")
     add("07-authority-policy-self-granted", "Successor replaces keys with test-key-c and signs only with it; the predecessor policy does not authorize test-key-c.",
-        s4, "invalid", ["signature-missing"], ["x-ref-unknown-signer"], bundle=[g])
+        s4, "invalid", ["signature-missing"], ["unknown-signer"], bundle=[g])
 
     m = copy.deepcopy(g)
     del m["entityId"]
     add("08-malformed-missing-field", "Required field entityId missing.", m, "invalid", ["missing-field"])
 
     m2 = sign(base_genesis(authorityPolicy={"authorizedSigners": ["test-key-a"], "requiredSignatureCount": 0}), "test-key-a")
-    add("09-malformed-type", "requiredSignatureCount is not a positive integer.", m2, "invalid", ["x-ref-field-invalid"])
+    add("09-malformed-type", "requiredSignatureCount is not a positive integer.", m2, "invalid", ["field-invalid"])
 
     anchored = sign(base_genesis(), "test-key-a")
     anchored["anchorReceipt"] = {"profile": "opentimestamps", "recordDigest": record_digest(anchored), "proof": "VEVTVC1PTkxZ"}
@@ -180,6 +180,31 @@ def build() -> dict[str, dict]:
 
     s5 = sign(successor(g2), "test-key-a", "test-key-b")
     add("23-valid-successor-2-of-2", "Successor meets a 2-of-2 predecessor policy.", s5, "valid", bundle=[g2])
+
+    multi = copy.deepcopy(g)
+    multi["entityId"] = ENTITY + "-tampered"
+    multi["anchorReceipt"] = {"profile": "opentimestamps", "recordDigest": "sha256:" + "33" * 32, "proof": "VEVTVC1PTkxZ"}
+    add("24-aggregate-invalid-codes", "Bad signature and anchor digest mismatch on one record: steps 3 and 6 both run and step 7 reports the union of invalid codes (ch01 evaluation order).",
+        multi, "invalid", ["signature-invalid", "anchor-digest-mismatch"])
+
+    renamed = sign(successor(g, entityId=ENTITY + "-renamed"), "test-key-a")
+    add("25-entity-id-mismatch", "Successor changes entityId; step 4 compares it with the predecessor.",
+        renamed, "invalid", ["entity-id-mismatch"], bundle=[g])
+
+    odd_suite = copy.deepcopy(g)
+    odd_suite["signatures"][0]["suite"] = "test-only-unsupported-suite"
+    add("26-unsupported-suite-blocking", "Only signature uses a suite the verifier does not support, so the threshold cannot be checked.",
+        odd_suite, "indeterminate", ["unsupported-suite"])
+
+    extra_suite = copy.deepcopy(g)
+    extra_suite["signatures"].append({"keyId": "test-key-b", "suite": "test-only-unsupported-suite", "signature": "VEVTVC1PTkxZ"})
+    add("27-unsupported-suite-extra", "Threshold met by a supported signature; an extra signature under an unsupported suite is not counted and only warns.",
+        extra_suite, "valid", warnings=["unsupported-suite"])
+
+    orphan = copy.deepcopy(s)
+    orphan["anchorReceipt"] = {"profile": "opentimestamps", "recordDigest": "sha256:" + "33" * 32, "proof": "VEVTVC1PTkxZ"}
+    add("28-predecessor-unavailable-anchor-mismatch", "Predecessor missing (steps 3 and 4 skipped) but step 6 still runs and finds an anchor digest mismatch, so invalid outranks indeterminate.",
+        orphan, "invalid", ["anchor-digest-mismatch"])
     return v
 
 
